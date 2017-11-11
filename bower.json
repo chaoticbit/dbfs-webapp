@@ -12,7 +12,8 @@
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
     "bootstrap-material-design": "v4.0.0-beta.4",
-    "popper.js": "^1.12.7"
+    "popper.js": "^1.12.7",
+    "angular-count-to": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
