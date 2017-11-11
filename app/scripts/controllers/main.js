@@ -7,11 +7,6 @@
  * # MainCtrl
  * Controller of the dbfsWebappApp
  */
-angular.module('dbfsWebappApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+angular.module('dbfsWebappApp').controller('MainCtrl', function () {
+
+});
