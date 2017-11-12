@@ -121,6 +121,26 @@ body {
     }
 }
 
+.fileUploadContainer {
+    padding: 30px 20px 20px 20px;
+    background-color: hsla(0,0%,60%,.2);
+    border-radius: 4px;
+    border:0px;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+    label {
+        display: block;
+        padding-top: 10px;
+        cursor: pointer;
+    }
+}
+.fileUploadContainer:hover {
+    .fa-desktop {
+        color: #555 !important;
+    }
+}
+
 @media only screen and (min-width: 960px) and (max-width: 1199px) {
 
 }
