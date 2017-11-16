@@ -14,12 +14,12 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope) {
     $scope.counterDuration = 1;
 
     $('.node-block').on('mouseover', function() {
-        // $(this).find('table').addClass('active-defocus');
+        $(this).find('table').addClass('active-defocus');
         $(this).find('.node-block-defocus-panel').show();
     });
 
     $('.node-block').on('mouseout', function() {
-        // $(this).find('table').removeClass('active-defocus');
+        $(this).find('table').removeClass('active-defocus');
         $(this).find('.node-block-defocus-panel').hide();
     });
 });
