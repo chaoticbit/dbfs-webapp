@@ -13,6 +13,8 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope) {
     $scope.totalNodes = 3;
     $scope.counterDuration = 1;
 
+    $scope.isKeyPresent = false;
+
     $('.node-block').on('mouseover', function() {
         $(this).find('table').addClass('active-defocus');
         $(this).find('.node-block-defocus-panel').show();
@@ -22,4 +24,15 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope) {
         $(this).find('table').removeClass('active-defocus');
         $(this).find('.node-block-defocus-panel').hide();
     });
+
+    $('.node-block-defocus-panel').on('click', function() {
+        if(!$scope.isKeyPresent) {
+            $('#enterKeyModal').modal('toggle');
+        }
+    });
+
+    $('#enterKeyModal').on('shown.bs.modal', function () {
+        $(this).find('input').focus();
+    });
+
 });
