@@ -5,7 +5,38 @@
                 Live Block status
             </p>
             <div class="row block-timeline">
-                <div class="col-sm-10 col-md-10 col-lg-8 text-center node-block">
+                <div class="col-sm-10 col-md-10 col-lg-8 text-center node-block" ng-repeat="block in blocklist">
+                    <table class="table table-responsive">
+                        <tbody>
+                            <tr>
+                                <td>Filename</td>
+                                <td>{{block.filename}}</td>
+                            </tr>
+                            <tr>
+                                <td>Hash</td>
+                                <td>{{block.hash}}</td>
+                            </tr>
+                            <tr>
+                                <td>Timestamp</td>
+                                <td>{{block.timestamp}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="node-block-defocus-panel">
+                        <div class="actions">
+                            <button class="btn btn-raised btn-secondary download-block-btn">
+                                <i class="fa fa-download"></i>
+                                Download
+                            </button>
+                            <button class="btn btn-raised btn-secondary">
+                                <i class="fa fa-external-link"></i>
+                                View
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <!-- <div class="col-sm-10 col-md-10 col-lg-8 text-center node-block">
                     <table class="table table-responsive">
                         <tbody>
                             <tr>
@@ -66,38 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-100"></div>
-                <div class="col-sm-10 col-md-10 col-lg-8 text-center node-block">
-                    <table class="table table-responsive">
-                        <tbody>
-                            <tr>
-                                <td>Filename</td>
-                                <td>dsadasdasds.mp4</td>
-                            </tr>
-                            <tr>
-                                <td>Hash</td>
-                                <td>dsadkj1jb21b3bh123b12k3b2jbkj31h2bk3DASD312312</td>
-                            </tr>
-                            <tr>
-                                <td>Timestamp</td>
-                                <td>37289131289331289</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="node-block-defocus-panel">
-                        <div class="actions">
-                            <button class="btn btn-raised btn-secondary download-block-btn">
-                                <i class="fa fa-download"></i>
-                                Download
-                            </button>
-                            <button class="btn btn-raised btn-secondary">
-                                <i class="fa fa-external-link"></i>
-                                View
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-100"></div>
+                <div class="w-100"></div> -->
             </div>
         </div>
     </div>
