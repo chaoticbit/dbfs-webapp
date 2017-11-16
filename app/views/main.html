@@ -35,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-100"></div>                
+                <div class="w-100"></div>
             </div>
         </div>
     </div>
@@ -67,6 +67,35 @@
                         <p class="count-text ">Nodes</p>
                     </div>
                 </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <p class="lead text-left" style="padding-left: 15px;margin-bottom: 0;font-weight:bold;width: 100%;">
+                    Nodes
+                </p>
+                <ul class="list-group bmd-list-group">
+                    <a class="list-group-item" ng-repeat="item in blocklist">
+                        <div class="bmd-list-group-col w-100 mr-0">
+                            <p class="list-group-item-heading mr-0">
+                                <span class="text-left">{{item.hash.substring(0, 10)}}</span>
+                                <small class="float-right text-success">Synced</small>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar w-100 bg-success mr-0" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="list-group-item">
+                        <div class="bmd-list-group-col w-100 mr-0">
+                            <p class="list-group-item-heading mr-0">
+                                <span class="text-left">0x34fec94d</span>
+                                <small class="float-right" style="color: #f0ad4e;">Pending</small>
+                            </p>
+                            <div class="progress">
+                                <div class="progress-bar w-75 bg-success mr-0" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </a>
+                </ul>
             </div>
         </div>
     </div>
