@@ -99,6 +99,15 @@ body {
             top: 0;
             left: 0;
 
+            .actions {
+                line-height: 150px;
+                button {
+                    width: 131px;
+                    font-weight: bold;
+                    padding-top: 11px;
+                }
+            }
+
             p {
                 color: #fff;
                 font-size:20px;

@@ -25,7 +25,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope) {
         $(this).find('.node-block-defocus-panel').hide();
     });
 
-    $('.node-block-defocus-panel').on('click', function() {
+    $('.download-block-btn').on('click', function() {
         if(!$scope.isKeyPresent) {
             $('#enterKeyModal').modal('toggle');
         }
