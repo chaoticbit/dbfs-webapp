@@ -39,6 +39,10 @@ body {
   overflow-x: hidden;
 }
 
+.custom-file-control, .form-control, input::placeholder, label {
+    line-height: -moz-block-height !important;    
+}
+
 .navbar-brand {
     font-weight: 300 !important;
 }
@@ -122,7 +126,7 @@ body {
         .list-group-item {
             padding: 12px 16px !important;
         }
-    }    
+    }
 }
 
 .center-pane {
