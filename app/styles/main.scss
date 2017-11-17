@@ -122,7 +122,7 @@ body {
         .list-group-item {
             padding: 12px 16px !important;
         }
-    }
+    }    
 }
 
 .center-pane {
@@ -185,20 +185,48 @@ body {
 
 /*--- Mobile portrait ---*/
 @media only screen and (min-width : 0px) and (max-width : 480px) {
-    .node-block {
-        .table {
-            width: 100% !important;
+    .left-pane {
+        padding-left: 0px;
+        padding-right: 10px;
+        .node-block {
+            .table {
+                width: 100% !important;
+            }
+        }
+    }
+    .center-pane {
+        padding-left: 0px;
+        padding-right: 0px;
+
+        .lead {
+            font-size: 18px;
+        }
+
+        .counter {
+            margin-bottom: 10px;
         }
     }
 }
 
 /*--- Mobile landscape ---*/
 @media only screen and (min-width : 480px) and (max-width : 595px) {
-    .node-block {
-        .table {
-            width: 100% !important;
+    .left-pane {
+        padding-left: 0px;
+        padding-right: 10px;
+        .node-block {
+            .table {
+                width: 100% !important;
+            }
         }
-    }    
+    }
+    .center-pane {
+        padding-left: 0px;
+        padding-right: 0px;
+
+        .counter {
+            margin-bottom: 10px;
+        }
+    }
 }
 
 /*--- Tablet portrait ---*/

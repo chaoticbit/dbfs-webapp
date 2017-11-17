@@ -24,7 +24,7 @@
                     </table>
                     <div class="node-block-defocus-panel">
                         <div class="actions">
-                            <button class="btn btn-raised btn-secondary download-block-btn">
+                            <button class="btn btn-raised btn-secondary download-block-btn" ng-click="downloadBlock($event, block)">
                                 <i class="fa fa-download"></i>
                                 Download
                             </button>
@@ -155,3 +155,10 @@
     </div>
   </div>
 </div>
+
+<script>
+$(window).scroll(function() {
+    $('.node-block-defocus-panel').hide();
+    $('.node-block').find('table').removeClass('active-defocus');
+});
+</script>
