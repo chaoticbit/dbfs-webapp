@@ -30,7 +30,9 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
+      'bower_components/bootstrap-material-design/js/bootstrap-material-design.min.js',
       'bower_components/popper.js/dist/umd/popper.js',
+      'bower_components/angular-count-to/build/angular-count-to.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
