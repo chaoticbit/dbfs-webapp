@@ -39,8 +39,12 @@ body {
   overflow-x: hidden;
 }
 
+.input-group {
+    z-index: 0 !important;
+}
+
 .custom-file-control, .form-control, input::placeholder, label {
-    line-height: -moz-block-height !important;    
+    line-height: -moz-block-height !important;
 }
 
 .navbar-brand {

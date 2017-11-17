@@ -1,7 +1,7 @@
 <div class="row" style="padding-top: 10px;">
     <div class="input-group">
         <span class="input-group-addon fa fa-search pr-2" id="search"></span>
-        <input type="text" class="form-control ml-0 search-input" placeholder="Search blocks" aria-labelledby="search" aria-describedby="search">
+        <input type="text" class="form-control ml-0 search-input" ng-model="blocksearch" placeholder="Search blocks" aria-labelledby="search" aria-describedby="search">
     </div>
 </div>
 <div class="row">
@@ -11,7 +11,7 @@
                 Live Block status
             </p>
             <div class="row block-timeline">
-                <div class="col-sm-10 col-md-10 col-lg-8 text-center node-block" ng-repeat="block in blocklist">
+                <div class="col-sm-10 col-md-10 col-lg-8 text-center node-block" ng-repeat="block in blocklist | filter: blocksearch">
                     <table class="table table-responsive">
                         <tbody>
                             <tr>
