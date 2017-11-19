@@ -12,7 +12,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope) {
     $scope.totalFileUploads = 20;
     $scope.totalNodes = 3;
     $scope.counterDuration = 1;
-    $scope.isKeyPresent = false;    
+    $scope.isKeyPresent = false;
 
     $scope.blocklist = [
         {
@@ -40,17 +40,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope) {
         });
     });
 
-    // $(document).on('mouseover', '.node-block', function() {
-    //     $(this).find('table').addClass('active-defocus');
-    //     $(this).find('.node-block-defocus-panel').show();
-    // });
-    //
-    // $(document).on('mouseout', '.node-block', function() {
-    //     $(this).find('table').removeClass('active-defocus');
-    //     $(this).find('.node-block-defocus-panel').hide();
-    // });
-
-    $scope.downloadBlock = function($event, block) {
+    $scope.downloadBlock = function() {
         if(!$scope.isKeyPresent) {
             $('#enterKeyModal').modal('toggle');
         }
