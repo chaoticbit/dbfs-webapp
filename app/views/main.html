@@ -16,7 +16,7 @@
                         <tbody>
                             <tr>
                                 <td>Filename</td>
-                                <td>{{block.filename}}</td>
+                                <td>{{block.data.file_name}}</td>
                             </tr>
                             <tr>
                                 <td>Hash</td>
@@ -55,14 +55,14 @@
                 <div class="col-md-4">
                     <div class="counter">
                         <i class="fa fa-link fa-2x"></i>
-                        <h2 class="timer count-title count-number" count-to="{{totalBlockchains}}" value="0" duration="{{counterDuration}}"></h2>
+                        <h2 class="timer count-title count-number" count-to="{{metaData.totalEntries}}" value="0" duration="{{counterDuration}}"></h2>
                         <p class="count-text ">Blocks</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="counter">
                         <i class="fa fa-files-o fa-2x"></i>
-                        <h2 class="timer count-title count-number" count-to="{{totalFileUploads}}" value="0" duration="{{counterDuration}}"></h2>
+                        <h2 class="timer count-title count-number" count-to="{{metaData.totalEntries - 1}}" value="0" duration="{{counterDuration}}"></h2>
                         <p class="count-text ">Files uploaded</p>
                     </div>
                 </div>

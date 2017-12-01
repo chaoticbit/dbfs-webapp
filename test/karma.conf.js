@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/bootstrap-material-design/js/bootstrap-material-design.min.js',
       'bower_components/popper.js/dist/umd/popper.js',
       'bower_components/angular-count-to/build/angular-count-to.min.js',
+      'bower_components/lodash/lodash.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

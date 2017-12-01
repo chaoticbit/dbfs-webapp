@@ -14,14 +14,7 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
             method: 'GET',
             url: ApiConfig.API_URL + '/blocks'
         });
-    };
-
-    this.getBlockChainMetaData = function() {
-        return $http({
-            method: 'GET',
-            url: ApiConfig.API_URL + ''
-        });
-    };
+    };    
 
     this.uploadFile = function(file) {
         var fd = new FormData();
