@@ -23,4 +23,38 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
         });
     };
 
+    this.uploadFile = function(file) {
+        var fd = new FormData();
+        fd.append('file', file);
+
+        return $http({
+            method: 'POST',
+            withCredentials: true,
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined }
+        });
+    };
+
+    this.searchBlocks = function(key) {
+        return $http({
+            method: 'POST',
+            url: ApiConfig.API_URL + '',
+            data: {'key': key},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+    };
+
+    this.loadMoreBlocks = function(page) {
+        return $http({
+            method: 'GET',
+            url: ApiConfig.API_URL + '/' + page,
+        });
+    };
+
+    this.getSingleBlockInfo = function(hash) {
+        return $http({
+            method: 'GET',
+            url: ApiConfig.API_URL + '/' + hash,
+        });
+    };
 });
