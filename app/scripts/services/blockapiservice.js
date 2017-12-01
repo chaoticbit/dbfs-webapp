@@ -12,7 +12,7 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
     this.getBlocks = function() {
         return $http({
             method: 'GET',
-            url: ApiConfig.API_URL + ''
+            url: ApiConfig.API_URL + '/blocks'
         });
     };
 
