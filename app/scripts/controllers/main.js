@@ -50,4 +50,13 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope) {
         $(this).find('input').focus();
     });
 
+    $('.toggle-file-upload').click(function() {
+        $('.file-upload').click();        
+    });
+
+    $scope.uploadFile = function(files) {
+        // BlockApiService.uploadFile(files[0]);
+        console.log(files[0].name);
+    };
+
 });

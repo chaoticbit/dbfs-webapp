@@ -119,9 +119,10 @@
       <div class="modal-body" style="padding-bottom: 0px;">
           <div class="fileUploadContainer">
               <h1 class="display-4 text-center" style="color: #555;">
-                  <i class="fa fa-desktop fa-2x" style="color: #888;"></i>
+                  <i class="fa fa-desktop fa-2x toggle-file-upload" style="color: #888;"></i>
               </h1>
               <label class="text-center">Drag Drop / Browse</label>
+              <input type="file" name="file" class="file-upload" style="position: absolute;top: -1000px;" onchange="angular.element(this).scope().uploadFile(this.files)" />
           </div>
         <form>
           <div class="form-group">
