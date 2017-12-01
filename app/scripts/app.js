@@ -33,6 +33,11 @@ var app = angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/blocks', {
+        templateUrl: 'views/blocks.html',
+        controller: 'BlocksCtrl',
+        controllerAs: 'blocks'
+      })
       .otherwise({
         redirectTo: '/'
       });
