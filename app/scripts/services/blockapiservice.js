@@ -14,7 +14,14 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
             method: 'GET',
             url: ApiConfig.API_URL + '/blocks'
         });
-    };    
+    };
+
+    this.getSingleBlockInfo = function(hash) {
+        return $http({
+            method: 'GET',
+            url: ApiConfig.API_URL + '/blocks/' + hash,
+        });
+    };
 
     this.uploadFile = function(file) {
         var fd = new FormData();
@@ -44,10 +51,10 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
         });
     };
 
-    this.getSingleBlockInfo = function(hash) {
+    this.downloadBlock = function(hash) {
         return $http({
             method: 'GET',
-            url: ApiConfig.API_URL + '/' + hash,
+            url: ApiConfig.API_URL + '/blocks/' + hash + '/file',
         });
     };
 });

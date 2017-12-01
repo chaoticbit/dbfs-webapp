@@ -37,10 +37,27 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
         });
     });
 
-    $scope.downloadBlock = function() {
-        if(!$scope.isKeyPresent) {
-            $('#enterKeyModal').modal('toggle');
-        }
+    $scope.downloadBlock = function(block) {
+        // if(!$scope.isKeyPresent) {
+        //     $('#enterKeyModal').modal('toggle');
+        // }
+        BlockApiService.downloadBlock(block.hash).then(function(data) {
+            var filedata = data.file;
+            var decoded = atob(filedata);
+            var filetype = block.data.file_name.split(".")[1];
+            var blob = new Blob([ decoded ], { type : 'image/jpg' });
+            saveAs(blob, block.data.file_name);
+            // var downloadLink = document.createElement('a');
+            // downloadLink.setAttribute('href', "data:application/octet-stream;base64," + encodeURIComponent(blob));
+            // downloadLink.href = window.URL.createObjectURL(blob);
+			// downloadLink.download = block.data.file_name;
+            // downloadLink.click();
+        }, function(error) {
+
+        }).catch(function(res) {
+
+        }).finally(function() {
+        });
     };
 
     $('#enterKeyModal').on('shown.bs.modal', function () {
@@ -52,7 +69,56 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
     });
 
     $scope.uploadFile = function(files) {
-        // BlockApiService.uploadFile(files[0]);
-        console.log(files[0].name);
-    };    
+        var file_name = files[0].name;
+    };
+
 });
+
+var key = "-----BEGIN RSA PRIVATE KEY-----\
+MIICXAIBAAKBgQDcxnn0S+3UTp1chOFPSYczAO9elWzphGSiY8VIIo3E2J+zNkUj\
+1bZ0iO/7VPE1LehANt/JNoHTBPH7mQYbAbmvo/GO6HZit2vc0YPeEIt6ZvW/Lo71\
+tdN50OxsQJGlX3ztlYAFWLIEWA8bfwtA59P9+dZHMzq6ukhMxPvaRRZAaQIDAQAB\
+AoGALCTDXcWQ2FKfxFANfP0Gu3wEYLUgAdEnDhFE8Rd3oVRvGjZPvMqOoN6AnZBu\
+amOzfKN8O49ahgcHG3eNcPj3V3fvFdONUpakKohI9/HbidVBrSUcpsTyLfS5CxMB\
+VVGBtvGYFRhDOgq5fALoPcUYBcnC7zrRARhXNMynTSyyuwECQQD/enYFYum61s77\
+jNvIme5DhfUMbYtOHEAoLxthQKNz8J7Kn71IlGBa3Ue7+jXIAcGjwMdBKdGcvF77\
+L+WrgQ+tAkEA3TngQlmurB5AiuDPvqeND4T/c4WFQWgWNAMGPmjpy9cpN/v4WWid\
+JwLPJNHjyq/zyKELtgv9QBSUoOzlhKRbLQJAPdts0AkPBooUO5vzazK6GedJWeT8\
+IcF9Vz1wp6965AuSpwTeU8B5RAbn43/FndOvCvMWS5TQh96kMLV8KnZpUQJBAJ5R\
+jflN3yBUIhKBYorps5yYrIvK0RuG1uTwCSbew/paB6iGDSxHHrhNXVrXTnK+SvOY\
+tR3aJKoYUGl+P58WVB0CQF1FhwJ3Nc+OOqZeRwnqcEMQT9MiaUz5Mgd7ZeEepjLM\
+/NXhycVyn0N7IF0zgfKy95RvnM9CJIZTwi/YWVxBsIY=\
+-----END RSA PRIVATE KEY-----";
+
+function encode(s) {
+    var s = unescape(encodeURIComponent(s))
+    var h = ''
+    for (var i = 0; i < s.length; i++) {
+        h += s.charCodeAt(i).toString(16)
+    }
+    return h.toUpperCase();
+}
+
+function decode(h) {
+    var s = ''
+    for (var i = 0; i < h.length; i+=2) {
+        s += String.fromCharCode(parseInt(h.substr(i, 2), 16))
+    }
+    return decodeURIComponent(escape(s));
+}
+
+var sign_fields = ['data', 'type', 'prev', 'timestamp'];
+var hash_fields = ['data', 'type', 'prev', 'timestamp', 'creator', 'signature'];
+
+function verify(block) {
+    sign = decode(block.signature);
+    key  = decode(block.creator);
+}
+
+function hash(bin) {
+    return sha256(bin).toUpperCase();
+}
+
+function sign() {
+
+}

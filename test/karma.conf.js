@@ -34,6 +34,10 @@ module.exports = function(config) {
       'bower_components/popper.js/dist/umd/popper.js',
       'bower_components/angular-count-to/build/angular-count-to.min.js',
       'bower_components/lodash/lodash.js',
+      'bower_components/crypto-js/index.js',
+      'bower_components/js-sha256/src/sha256.js',
+      'bower_components/cryptico/cryptico.js',
+      'bower_components/file-saver/FileSaver.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

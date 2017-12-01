@@ -1,1 +1,29 @@
-<p>This is the blocks view.</p>
+<div class="row" style="padding-top: 10px;">
+    <p class="lead text-left">
+        Block Metadata
+    </p>
+</div>
+<div class="row" style="padding-top: 1px;">
+    <ul class="list-group">
+        <a class="list-group-item">
+            <i class="fa fa-id-badge"></i>
+            {{blockInfo.id}}
+        </a>
+        <a class="list-group-item">
+            <i class="fa fa-file"></i>
+            {{blockInfo.data.file_name}}
+        </a>
+        <a class="list-group-item">
+            <i class="fa fa-hashtag"></i>
+            {{blockInfo.hash}}
+        </a>
+        <a class="list-group-item">
+            Prev
+            {{blockInfo.prev}}
+        </a>
+        <a class="list-group-item">
+            <i class="fa fa-clock-o"></i>
+            {{blockInfo.timestamp}}
+        </a>
+    </ul>
+</div>

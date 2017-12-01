@@ -21,7 +21,7 @@ var app = angular
     'countTo'
   ]).constant('_', _);
 
-  app.config(function ($routeProvider, $httpProvider) {
+  app.config(function ($routeProvider, $httpProvider, $compileProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -41,6 +41,8 @@ var app = angular
       .otherwise({
         redirectTo: '/'
       });
+
+      $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
 
       $httpProvider.interceptors.push(function($q, $rootScope) {
          return {
