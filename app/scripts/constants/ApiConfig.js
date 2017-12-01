@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular.module('dbfsWebappApp').factory('ApiConfig', function() {
     var API_URL = 'http://localhost/someapi';
