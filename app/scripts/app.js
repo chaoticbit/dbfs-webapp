@@ -33,7 +33,7 @@ var app = angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .when('/blocks', {
+      .when('/blocks/:hash', {
         templateUrl: 'views/blocks.html',
         controller: 'BlocksCtrl',
         controllerAs: 'blocks'
