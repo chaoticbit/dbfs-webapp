@@ -1,29 +1,68 @@
 <div class="row" style="padding-top: 10px;">
-    <p class="lead text-left">
+    <a href="/" class="text-dark" style="position: absolute;left: 15px;text-decoration: none;">
+        <i class="fa fa-angle-left text-dark" style="font-size: 29px;margin-top: -2px;"></i>
+        <span style="vertical-align: text-bottom;">Back</span>
+    </a>
+    <p class="lead text-left ml-2">
         Block Metadata
     </p>
 </div>
-<div class="row" style="padding-top: 1px;">
-    <ul class="list-group">
-        <a class="list-group-item">
+<div class="row">
+    <ul class="list-group bmd-list-group-sm">
+        <a class="list-group-item" style="box-shadow: 0px 1px #eee;padding: 1rem 1rem .1rem;">
             <i class="fa fa-id-badge"></i>
-            {{blockInfo.id}}
+            <div class="bmd-list-group-col">
+                <p class="list-group-item-heading">ID</p>
+                <p class="list-group-item-text">{{blockInfo.id}}</p>
+            </div>
+        </a>
+        <a class="list-group-item" style="box-shadow: 0px 1px #eee;padding: 1rem 1rem .1rem;">
+            <i class="fa fa-file"></i>
+            <div class="bmd-list-group-col">
+                <p class="list-group-item-heading">File name</p>
+                <p class="list-group-item-text">{{blockInfo.data.file_name}}</p>
+            </div>
+        </a>
+        <a class="list-group-item" style="box-shadow: 0px 1px #eee;padding: 1rem 1rem .1rem;">
+            <i class="fa fa-hashtag"></i>
+            <div class="bmd-list-group-col">
+                <p class="list-group-item-heading">Hash</p>
+                <p class="list-group-item-text">{{blockInfo.hash}}</p>
+            </div>
+        </a>
+        <a class="list-group-item" style="box-shadow: 0px 1px #eee;padding: 1rem 1rem .1rem;">
+            <i class="fa fa-long-arrow-left"></i>
+            <div class="bmd-list-group-col">
+                <p class="list-group-item-heading">Previous</p>
+                <p class="list-group-item-text">{{blockInfo.prev}}</p>
+            </div>
+        </a>
+        <a class="list-group-item" style="box-shadow: 0px 1px #eee;padding: 1rem 1rem .1rem;">
+            <i class="fa fa-clock-o"></i>
+            <div class="bmd-list-group-col">
+                <p class="list-group-item-heading">Timestamp</p>
+                <p class="list-group-item-text">{{blockInfo.timestamp}}</p>
+            </div>
+        </a>
+        <!-- <a class="list-group-item">
+            <span class="label label-default label-pill">Block ID</span>
+            <span>{{blockInfo.id}}</span>
         </a>
         <a class="list-group-item">
-            <i class="fa fa-file"></i>
+            <span class="label label-default label-pill">File name</span>
             {{blockInfo.data.file_name}}
         </a>
         <a class="list-group-item">
-            <i class="fa fa-hashtag"></i>
+            <span class="label label-default label-pill">Hash</span>
             {{blockInfo.hash}}
         </a>
         <a class="list-group-item">
-            Prev
+            <span class="label label-default label-pill">Previous</span>
             {{blockInfo.prev}}
         </a>
         <a class="list-group-item">
-            <i class="fa fa-clock-o"></i>
+            <span class="label label-default label-pill">Timestamp</span>
             {{blockInfo.timestamp}}
-        </a>
+        </a> -->
     </ul>
 </div>
