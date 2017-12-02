@@ -4,6 +4,54 @@ window.DBFS = new (function() {
   var DBFS = this;
 
 
+
+  /**
+   * Crypto Functions
+   */
+  DBFS.Crypto = new (function() {
+    var $$$ = this;
+
+    // Base 16 Encoding
+    $$$.encode = function(st) {
+      var s = unescape(encodeURIComponent(st));
+      var h = '';
+      for (var i = 0; i < s.length; i++) {
+        h += s.charCodeAt(i).toString(16);
+      }
+      return h.toUpperCase();
+    };
+
+
+    // Base 16 Decoding
+    $$$.decode = function(h) {
+      var s = '';
+      for (var i = 0; i < h.length; i+=2) {
+        s += String.fromCharCode(parseInt(h.substr(i, 2), 16));
+      }
+      return decodeURIComponent(escape(s));
+    };
+
+
+    // SHA256 Hashing
+    $$$.sha256 = function(string) {
+      return sha256(string).toUpperCase();
+    };
+
+    return $$$;
+  })();
+
+
+
+  // var sign_fields = ['data', 'type', 'prev', 'timestamp'];
+  // var hash_fields = ['data', 'type', 'prev', 'timestamp', 'creator', 'signature'];
+
+  // function verify(block) {
+  //   sign = decode(block.signature);
+  //   key  = decode(block.creator);
+  // }
+
+
+
   /**
    * File Helper functions
    */
