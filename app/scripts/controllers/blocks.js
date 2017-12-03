@@ -13,6 +13,7 @@ angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $rout
 
     BlockApiService.getSingleBlockInfo($scope.blockHash).then(function(data) {
         $scope.blockInfo = data;
+        window.block = data;
         console.log($scope.blockInfo);
     }, function(error) {
 

@@ -4,12 +4,67 @@ window.DBFS = new (function() {
   var DBFS = this;
 
 
+  /**
+   * Private Helpers
+   */
+
+  var fields = {
+    sign: ['data', 'type', 'prev', 'timestamp'],
+    hash: ['data', 'type', 'prev', 'timestamp', 'creator', 'signature']
+  };
+
+  var pluck = function(source, keys) {
+    var object = {};
+    keys.forEach((key) => { object[key] = source[key]; });
+    return object;
+  };
+
+
+
+
+  /**
+   * JSON Functions
+   */
+  DBFS.JSON = new (function() {
+    var $$$ = this;
+
+    // Encode an Object
+    $$$.encode = function(object, fields) {
+      if (_.isPlainObject(object)) {
+        object = (fields ? pluck(object, fields) : object);
+
+        var encoded =
+          Object
+            .keys(object)
+            .sort()
+            .map((k) => $$$.encode(k) + ':' + $$$.encode(object[k]))
+            .join(',');
+
+        return ('{' + encoded + '}');
+
+      } else {
+        return JSON.stringify(object);
+      }
+    };
+
+    return $$$;
+  })();
+
+
 
   /**
    * Crypto Functions
    */
   DBFS.Crypto = new (function() {
     var $$$ = this;
+
+
+    // Verify a block is valid
+    $$$.verify = function(block) {
+      var sign = $$$.decode(block.signature);
+      var key  = $$$.decode(block.creator);
+    };
+
 
     // Base 16 Encoding
     $$$.encode = function(st) {
@@ -41,9 +96,6 @@ window.DBFS = new (function() {
   })();
 
 
-
-  // var sign_fields = ['data', 'type', 'prev', 'timestamp'];
-  // var hash_fields = ['data', 'type', 'prev', 'timestamp', 'creator', 'signature'];
 
   // function verify(block) {
   //   sign = decode(block.signature);
