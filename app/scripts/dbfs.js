@@ -74,9 +74,13 @@ window.DBFS = new (function() {
     $$$.downloadEncoded = function(name, encoded) {
       var link = document.createElement('a');
 
-      link.href = ('data:application/octet-stream;base64,' + encoded);
+      link.href = 'data:application/octet-stream;base64,' + encodeURIComponent(encoded);
+      link.target = '_self';
       link.download = name;
+
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
     };
 
 
