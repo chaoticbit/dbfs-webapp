@@ -61,8 +61,12 @@ window.DBFS = new (function() {
 
     // Verify a block is valid
     $$$.verify = function(block) {
-      var sign = $$$.decode(block.signature);
+      var sign = block.signature;
+      var json = DBFS.JSON.encode(block, fields.sign);
       var key  = $$$.decode(block.creator);
+      var pubk = KEYUTIL.getKey(key);
+
+      return pubk.verify(json, sign);
     };
 
 
