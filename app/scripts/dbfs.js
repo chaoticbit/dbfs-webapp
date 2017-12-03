@@ -19,7 +19,29 @@ window.DBFS = new (function() {
     return object;
   };
 
+  var publicFromPrivate = function(rsa) {
+    var pub = KEYUTIL.getKey({n: rsa.n, e: rsa.e});
+    return keyToString(pub);
+  };
 
+  var parsePrivateKey = function(pem) {
+    var rsa = new RSAKey();
+    rsa.readPrivateKeyFromPEMString(pem);
+    return rsa;
+  };
+
+  var keyToString = function(key) {
+    return KEYUTIL.getPEM(key);
+  };
+
+
+  var toUtf8 = function(string) {
+    return unescape(encodeURIComponent(string));
+  }
+
+  var fromUtf8 = function(string) {
+    return decodeURIComponent(escape(string));
+  }
 
 
   /**
@@ -59,25 +81,45 @@ window.DBFS = new (function() {
     var $$$ = this;
 
 
+
+
     // Verify a block is valid
     $$$.verify = function(block) {
       var sign = block.signature;
       var json = DBFS.JSON.encode(block, fields.sign);
-      var key  = $$$.decode(block.creator);
-      var pubk = KEYUTIL.getKey(key);
+      var pubk = KEYUTIL.getKey($$$.decode(block.creator));
 
       return pubk.verify(json, sign);
     };
 
 
+    // Returns a signed block
+    $$$.sign = function(block, privateKey) {
+      var block = _.clone(block);
+      var json  = DBFS.JSON.encode(block, fields.sign);
+      var rsa   = parsePrivateKey(privateKey);
+
+      block.signature = rsa.sign(json, 'sha256').toUpperCase();
+      block.creator = $$$.encode(publicFromPrivate(rsa));
+
+      return block;
+    };
+
+
     // Base 16 Encoding
-    $$$.encode = function(st) {
-      var s = unescape(encodeURIComponent(st));
-      var h = '';
-      for (var i = 0; i < s.length; i++) {
-        h += s.charCodeAt(i).toString(16);
+    $$$.encode = function(text) {
+      var text = text.replace(/\r/g, '');
+      var digits = "0123456789ABCDEF";
+      var hex = "";
+
+      for (var i = 0; i < text.length; i++) {
+        var hc = (text.charCodeAt(i) >>> 4) & 0x0F;
+        var lc = text.charCodeAt(i) & 0x0F;
+        hex += digits[hc];
+        hex += digits[lc];
       }
-      return h.toUpperCase();
+
+      return hex;
     };
 
 
