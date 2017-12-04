@@ -44,6 +44,37 @@ window.DBFS = new (function() {
   }
 
 
+
+  /**
+   * Block Creation Functions
+   */
+  DBFS.Block = new (function() {
+    var $$$ = this;
+
+    $$$.fileCreate = function(prevBlock, file, privateKey) {
+      var file = DBFS.File.encrypt(file, privateKey);
+
+      var block = {
+        type: 'file_create',
+        prev: prevBlock.hash,
+        timestamp: DBFS.JSON.timestamp(),
+        data: {
+          file_name: file.name,
+          file_hash: file.hash
+        }
+      };
+
+      var signed = DBFS.Crypto.sign(block, privateKey);
+      var hashed = DBFS.Crypto.hash(signed);
+
+      return {block: hashed, data: file.encoded};
+    };
+
+    return $$$;
+  })();
+
+
+
   /**
    * JSON Functions
    */
@@ -68,6 +99,13 @@ window.DBFS = new (function() {
         return JSON.stringify(object);
       }
     };
+
+
+    // Get Timestamp
+    $$$.timestamp = function() {
+      return (new Date()).toISOString();
+    };
+
 
     return $$$;
   })();
@@ -184,6 +222,48 @@ window.DBFS = new (function() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    };
+
+
+    // Check if browser has support for reading files
+    $$$.canRead = function() {
+      return !!(window.File && window.FileReader && window.FileList && window.Blob);
+    };
+
+
+    // Read a file and get contents
+    $$$.read = function(file, onRead) {
+      if (file.files && file.files[0]) {
+        $$$.read(file.files[0], onRead);
+
+      } else if (file) {
+        var reader = new FileReader();
+
+        reader.onerror = function(ev) {
+          console.error("Unable to read file: ", file);
+        };
+
+        reader.onload = function(ev) {
+          onRead({
+            name: file.name,
+            type: file.type,
+            data: ev.target.result
+          });
+        };
+
+        reader.readAsBinaryString(f);
+      }
+    };
+
+
+    // Encrypt File and prepare params for upload
+    $$$.encrypt = function(file, privateKey) {
+      var encrypted = file.data; // do actual encryption here
+
+      file.hash = DBFS.Crypto.sha256(encrypted);
+      file.encoded = $$$.encode(encrypted);
+
+      return file;
     };
 
 
