@@ -106,6 +106,17 @@ window.DBFS = new (function() {
     };
 
 
+    // Returns a hashed block
+    $$$.hash = function(block) {
+      var block = _.clone(block);
+      var json  = DBFS.JSON.encode(block, fields.hash);
+
+      block.hash = $$$.sha256(json);
+
+      return block;
+    };
+
+
     // Base 16 Encoding
     $$$.encode = function(text) {
       var text = text.replace(/\r/g, '');
@@ -141,12 +152,6 @@ window.DBFS = new (function() {
     return $$$;
   })();
 
-
-
-  // function verify(block) {
-  //   sign = decode(block.signature);
-  //   key  = decode(block.creator);
-  // }
 
 
 
