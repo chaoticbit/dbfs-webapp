@@ -23,12 +23,11 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
         });
     };
 
-    this.uploadFile = function(file) {
-        var fd = new FormData();
-        fd.append('file', file);
-
+    this.uploadFile = function(blockWithfile) {
         return $http({
             method: 'POST',
+            url: ApiConfig.API_URL + '/blocks',
+            data: blockWithfile,
             withCredentials: true,
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined }

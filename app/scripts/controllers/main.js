@@ -15,6 +15,8 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
     $scope.isKeyPresent = false;
     $scope.blocklist = [];
     $scope.metaData = {};
+    $scope.privateKey;
+    $scope.memo;
 
     BlockApiService.getBlocks().then(function(data) {
         $scope.blocklist = data.entries;
@@ -61,6 +63,9 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
 
     $scope.uploadFile = function(files) {
         var file_name = files[0].name;
+        DBFS.File.read(files, function(file) {
+            var block = DBFS.Block.fileCreate($scope.blocklist[0].hash, file, $scope.privateKey);
+        })
     };
 
 });
