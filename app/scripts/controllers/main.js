@@ -64,11 +64,13 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
 
     $scope.saveUploadedFile = function(files) {
         $scope.selectedFile = files[0];
+        $scope.selectedFileName = $scope.selectedFile.name;
+        console.log($scope.selectedFileName);
     };
 
     $scope.uploadFile = function() {
         DBFS.File.read($scope.selectedFile, function(file) {
-            var block = DBFS.Block.fileCreate($scope.blocklist[0].hash, file, $scope.privateKey);
+            var block = DBFS.Block.fileCreate($scope.blocklist[0], file, $scope.privateKey);
             console.log(block);
             BlockApiService.uploadFile(block).then(function(data) {
                 console.log(data);

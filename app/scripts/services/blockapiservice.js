@@ -24,12 +24,11 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
     };
 
     this.uploadFile = function(blockWithfile) {
-        console.log(blockWithfile);
         return $http({
             method: 'POST',
             url: ApiConfig.API_URL + '/blocks',
             data: blockWithfile,
-            headers: {'Content-Type': 'application/json' }
+            headers: {'Content-Type': 'application/json'}
         });
     };
 

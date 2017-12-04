@@ -130,12 +130,10 @@
               <input type="file" name="file" class="file-upload" style="position: absolute;top: -1000px;" onchange="angular.element(this).scope().saveUploadedFile(this.files)" />
           </div>
         <form>
-          <div class="form-group">
-              <input type="text" class="form-control" ng-model="memo" placeholder="Memo">
-          </div>
-          <div class="form-group">
+        <p>Filename: {{selectedFileName}}</p>           
+         <div class="form-group">
               <textarea class="form-control" ng-model="privateKey" placeholder="Paste your private key" style="height: 200px;line-height: 1 !important;font-family: monospace;font-size: 8px;"></textarea>
-          </div>
+         </div>
         </form>
       </div>
       <div class="modal-footer">
