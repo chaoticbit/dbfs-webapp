@@ -184,7 +184,7 @@ window.DBFS = new (function() {
 
     // SHA256 Hashing
     $$$.sha256 = function(string) {
-      return sha256(string).toUpperCase();
+      return sha256.hex(string).toUpperCase();
     };
 
     return $$$;
@@ -233,10 +233,10 @@ window.DBFS = new (function() {
 
     // Read a file and get contents
     $$$.read = function(file, onRead) {
-      if (file.files && file.files[0]) {
+      if (file && file.files && file.files[0]) {
         $$$.read(file.files[0], onRead);
 
-      } else if (file) {
+      } else if (file && onRead) {
         var reader = new FileReader();
 
         reader.onerror = function(ev) {
@@ -251,7 +251,7 @@ window.DBFS = new (function() {
           });
         };
 
-        reader.readAsBinaryString(f);
+        reader.readAsBinaryString(file);
       }
     };
 

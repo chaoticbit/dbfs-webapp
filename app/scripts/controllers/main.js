@@ -62,10 +62,23 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
         $('.file-upload').click();
     });
 
-    $scope.uploadFile = function(files) {
-        var file_name = files[0].name;
-        DBFS.File.read(files, function(file) {
+    $scope.saveUploadedFile = function(files) {
+        $scope.selectedFile = files[0];
+    };
+
+    $scope.uploadFile = function() {
+        DBFS.File.read($scope.selectedFile, function(file) {
             var block = DBFS.Block.fileCreate($scope.blocklist[0].hash, file, $scope.privateKey);
+            console.log(block);
+            BlockApiService.uploadFile(block).then(function(data) {
+                console.log(data);
+            }, function(error) {
+                console.log(error);
+            }).catch(function(res) {
+                console.log(res);
+            }).finally(function() {
+
+            });
         })
     };
 
