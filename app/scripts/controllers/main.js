@@ -23,6 +23,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
         $scope.metaData.totalPages = data.total_pages;
         $scope.metaData.totalEntries = data.total_entries;
         $scope.metaData.currentPage = data.page_number;
+        console.log($scope.blocklist);
     }, function(error) {
 
     }).catch(function(res) {
@@ -67,5 +68,20 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
             var block = DBFS.Block.fileCreate($scope.blocklist[0].hash, file, $scope.privateKey);
         })
     };
+
+    $('.load-more-btn').click(function() {
+        var nextPage = $scope.metaData.currentPage + 1;
+        BlockApiService.loadMoreBlocks(nextPage).then(function(data) {
+            $scope.metaData.currentPage = data.page_number
+            $scope.blocklist = $scope.blocklist.concat(data.entries);
+            console.log($scope.blocklist);
+        }, function(error) {
+
+        }).catch(function(res) {
+
+        }).finally(function() {
+
+        });
+    });
 
 });
