@@ -44,9 +44,33 @@
                 <p class="list-group-item-text">{{blockInfo.timestamp}}</p>
             </div>
         </a>
-        <button class="btn btn-raised col-md-3 btn-primary download-block-btn" style="margin-top: 10px;" ng-click="downloadBlock(block)">
+        <button class="btn btn-raised btn-primary download-block-btn" style="width: 285px;margin-top: 10px;" ng-click="openEnterKeyModal()">
             <i class="fa fa-download"></i>
             Download
         </button>
     </ul>
+</div>
+
+<div class="modal fade" id="enterKeyModal" tabindex="-1" role="dialog" aria-labelledby="enterKeyModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="enterKeyModalLabel">Enter your key</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" style="margin-top: -10px;vertical-align: super;">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px;">
+        <form>
+          <div class="form-group">
+            <textarea class="form-control" ng-model="privateKey" placeholder="Paste your private key" style="height: 200px;line-height: 1 !important;font-family: monospace;font-size: 12px;"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+        <button type="button" class="btn btn-primary" ng-click="downloadBlock()">DOWNLOAD</button>
+      </div>
+    </div>
+  </div>
 </div>

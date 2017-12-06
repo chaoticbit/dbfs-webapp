@@ -22,4 +22,23 @@ angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $rout
     }).finally(function() {
 
     });
+
+    $('#enterKeyModal').on('shown.bs.modal', function () {
+        $(this).find('textarea').focus();
+    });
+
+    $scope.openEnterKeyModal = function() {
+        $('#enterKeyModal').modal('toggle');
+    };
+
+    $scope.downloadBlock = function() {
+        BlockApiService.downloadBlock(block.hash).then(function(data) {
+          DBFS.File.downloadEncoded(block.data.file_name, data.file);
+        }, function(error) {
+
+        }).catch(function(res) {
+
+        }).finally(function() {
+        });
+    };
 });
