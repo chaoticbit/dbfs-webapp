@@ -70,6 +70,18 @@ window.DBFS = new (function() {
       return {block: hashed, data: file.encoded};
     };
 
+
+    $$$.isOwner = function(block, privateKey) {
+      try {
+        var publicKey = publicFromPrivate(parsePrivateKey(privateKey));
+        var encoded = DBFS.Crypto.encode(publicKey);
+        return (encoded == block.creator);
+      } catch (err) {
+        console.error("Invalid Key");
+        return false;
+      }
+    };
+
     return $$$;
   })();
 

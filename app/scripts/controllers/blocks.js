@@ -34,6 +34,8 @@ angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $rout
 
     $scope.downloadBlock = function() {
         window.localStorage.setItem(ApiConfig.PRIVATE_KEY_NAME, $scope.privateKey);
+
+      if (DBFS.Block.isOwner(block, $scope.privateKey)) {
         BlockApiService.downloadBlock(block.hash).then(function(data) {
           DBFS.File.downloadEncoded(block.data.file_name, data.file);
         }, function(error) {
@@ -43,5 +45,8 @@ angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $rout
         }).finally(function() {
             $('#enterKeyModal').modal('hide');
         });
+      } else {
+        alert("Invalid Key");
+      }
     };
 });
