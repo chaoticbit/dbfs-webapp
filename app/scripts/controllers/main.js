@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the dbfsWebappApp
  */
-angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $location, ApiConfig, BlockApiService) {
+angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route, $timeout, $location, ApiConfig, BlockApiService) {
     $scope.totalBlockchains = 30;
     $scope.totalFileUploads = 20;
     $scope.totalNodes = 3;
@@ -66,20 +66,21 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $locati
         $scope.selectedFile = files[0];
         $scope.selectedFileName = $scope.selectedFile.name;
         console.log($scope.selectedFileName);
+        $scope.$apply();
     };
 
     $scope.uploadFile = function() {
         DBFS.File.read($scope.selectedFile, function(file) {
-            var block = DBFS.Block.fileCreate($scope.blocklist[0], file, $scope.privateKey);
-            console.log(block);
-            BlockApiService.uploadFile(block).then(function(data) {
+            var blockWithFile = DBFS.Block.fileCreate($scope.blocklist[0], file, $scope.privateKey);
+            BlockApiService.uploadFile(blockWithFile).then(function(data) {
+                $('#fileUploadModal').modal('hide');
                 console.log(data);
             }, function(error) {
                 console.log(error);
             }).catch(function(res) {
                 console.log(res);
             }).finally(function() {
-
+              $timeout($route.reload, 10);
             });
         })
     };

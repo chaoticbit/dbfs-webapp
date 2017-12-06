@@ -260,8 +260,8 @@ window.DBFS = new (function() {
     $$$.encrypt = function(file, privateKey) {
       var encrypted = file.data; // do actual encryption here
 
-      file.hash = DBFS.Crypto.sha256(encrypted);
       file.encoded = $$$.encode(encrypted);
+      file.hash    = DBFS.Crypto.sha256(file.encoded);
 
       return file;
     };
