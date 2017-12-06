@@ -118,13 +118,13 @@
         <form>
         <p>Filename: {{selectedFileName}}</p>
          <div class="form-group">
-              <textarea class="form-control" ng-model="privateKey" placeholder="Paste your private key" style="height: 200px;line-height: 1 !important;font-family: monospace;font-size: 8px;"></textarea>
+              <textarea class="form-control" ng-model="privateKey" placeholder="Paste your private key" style="height: 200px;line-height: 1 !important;font-family: monospace;font-size: 12px;"></textarea>
          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
-        <button type="button" class="btn btn-primary upload-file-btn" ng-click="uploadFile()">UPLOAD</button>
+        <button type="button" class="btn btn-primary upload-file-btn" ng-click="uploadFile()" ng-disabled="privateKey == ''">UPLOAD</button>
       </div>
     </div>
   </div>

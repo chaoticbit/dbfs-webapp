@@ -7,9 +7,10 @@
  * # BlocksCtrl
  * Controller of the dbfsWebappApp
  */
-angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $routeParams, ApiConfig, BlockApiService) {
+angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $routeParams, $window, ApiConfig, BlockApiService) {
     $scope.blockHash = $routeParams.hash;
     $scope.blockInfo = {};
+    $scope.privateKey = window.localStorage.getItem(ApiConfig.PRIVATE_KEY_NAME) || '';
 
     BlockApiService.getSingleBlockInfo($scope.blockHash).then(function(data) {
         $scope.blockInfo = data;
@@ -32,6 +33,7 @@ angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $rout
     };
 
     $scope.downloadBlock = function() {
+        window.localStorage.setItem(ApiConfig.PRIVATE_KEY_NAME, $scope.privateKey);
         BlockApiService.downloadBlock(block.hash).then(function(data) {
           DBFS.File.downloadEncoded(block.data.file_name, data.file);
         }, function(error) {
@@ -39,6 +41,7 @@ angular.module('dbfsWebappApp').controller('BlocksCtrl', function ($scope, $rout
         }).catch(function(res) {
 
         }).finally(function() {
+            $('#enterKeyModal').modal('hide');
         });
     };
 });

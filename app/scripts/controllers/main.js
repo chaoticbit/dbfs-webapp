@@ -16,7 +16,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
     $scope.blocklist = [];
     $scope.metaData = {};
     $scope.nodeslist = [];
-    $scope.privateKey;
+    $scope.privateKey = window.localStorage.getItem(ApiConfig.PRIVATE_KEY_NAME) || '';
     $scope.memo;
 
     BlockApiService.getBlocks().then(function(data) {
@@ -42,8 +42,8 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
         });
     });
 
-    $('#enterKeyModal').on('shown.bs.modal', function () {
-        $(this).find('input').focus();
+    $('#fileUploadModal').on('shown.bs.modal', function () {
+        $(this).find('textarea').focus();
     });
 
     $('.toggle-file-upload').click(function() {
@@ -58,6 +58,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
     };
 
     $scope.uploadFile = function() {
+        window.localStorage.setItem(ApiConfig.PRIVATE_KEY_NAME, $scope.privateKey);
         DBFS.File.read($scope.selectedFile, function(file) {
             var blockWithFile = DBFS.Block.fileCreate($scope.blocklist[0], file, $scope.privateKey);
             BlockApiService.uploadFile(blockWithFile).then(function(data) {
