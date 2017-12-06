@@ -96,7 +96,15 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
         }).catch(function(res) {
 
         }).finally(function() {
-
+            $(document).ready(function() {
+                $('.node-block').hover(function() {
+                    $(this).find('table').addClass('active-defocus');
+                    $(this).find('.node-block-defocus-panel').show();
+                }, function() {
+                    $(this).find('table').removeClass('active-defocus');
+                    $(this).find('.node-block-defocus-panel').hide();
+                });
+            });
         });
     });
 
