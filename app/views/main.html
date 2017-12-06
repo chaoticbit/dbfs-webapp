@@ -29,11 +29,7 @@
                         </tbody>
                     </table>
                     <div class="node-block-defocus-panel">
-                        <div class="actions">
-                            <button class="btn btn-raised btn-secondary download-block-btn" ng-click="downloadBlock(block)">
-                                <i class="fa fa-download"></i>
-                                Download
-                            </button>
+                        <div class="actions">                            
                             <a href="#!/blocks/{{block.hash}}">
                                 <button class="btn btn-raised btn-secondary">
                                     <i class="fa fa-external-link"></i>
@@ -130,7 +126,7 @@
               <input type="file" name="file" class="file-upload" style="position: absolute;top: -1000px;" onchange="angular.element(this).scope().saveUploadedFile(this.files)" />
           </div>
         <form>
-        <p>Filename: {{selectedFileName}}</p>           
+        <p>Filename: {{selectedFileName}}</p>
          <div class="form-group">
               <textarea class="form-control" ng-model="privateKey" placeholder="Paste your private key" style="height: 200px;line-height: 1 !important;font-family: monospace;font-size: 8px;"></textarea>
          </div>

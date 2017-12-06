@@ -38,21 +38,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
                 $(this).find('.node-block-defocus-panel').hide();
             });
         });
-    });
-
-    $scope.downloadBlock = function(block) {
-        // if(!$scope.isKeyPresent) {
-        //     $('#enterKeyModal').modal('toggle');
-        // }
-        BlockApiService.downloadBlock(block.hash).then(function(data) {
-          DBFS.File.downloadEncoded(block.data.file_name, data.file);
-        }, function(error) {
-
-        }).catch(function(res) {
-
-        }).finally(function() {
-        });
-    };
+    });    
 
     $('#enterKeyModal').on('shown.bs.modal', function () {
         $(this).find('input').focus();
