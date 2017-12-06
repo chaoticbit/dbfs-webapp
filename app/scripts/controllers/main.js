@@ -15,15 +15,17 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
     $scope.isKeyPresent = false;
     $scope.blocklist = [];
     $scope.metaData = {};
+    $scope.nodeslist = [];
     $scope.privateKey;
     $scope.memo;
 
     BlockApiService.getBlocks().then(function(data) {
-        $scope.blocklist = data.entries;
-        $scope.metaData.totalPages = data.total_pages;
-        $scope.metaData.totalEntries = data.total_entries;
-        $scope.metaData.currentPage = data.page_number;
-        console.log($scope.blocklist);
+        var response = data.recent;
+        $scope.blocklist = response.entries;
+        $scope.metaData.totalPages = response.total_pages;
+        $scope.metaData.totalEntries = response.total_entries;
+        $scope.metaData.currentPage = response.page_number;
+        $scope.nodeslist = data.nodes;
     }, function(error) {
 
     }).catch(function(res) {
@@ -38,7 +40,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
                 $(this).find('.node-block-defocus-panel').hide();
             });
         });
-    });    
+    });
 
     $('#enterKeyModal').on('shown.bs.modal', function () {
         $(this).find('input').focus();
