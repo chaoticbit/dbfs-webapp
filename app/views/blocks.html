@@ -8,7 +8,7 @@
     </p>
 </div>
 <div class="row">
-    <ul class="list-group bmd-list-group-sm">
+    <ul class="list-group bmd-list-group-sm" style="padding-top: 0px;">
         <a class="list-group-item" style="box-shadow: 0px 1px #eee;padding: 1rem 1rem .1rem;">
             <i class="fa fa-id-badge"></i>
             <div class="bmd-list-group-col">
@@ -44,25 +44,9 @@
                 <p class="list-group-item-text">{{blockInfo.timestamp}}</p>
             </div>
         </a>
-        <!-- <a class="list-group-item">
-            <span class="label label-default label-pill">Block ID</span>
-            <span>{{blockInfo.id}}</span>
-        </a>
-        <a class="list-group-item">
-            <span class="label label-default label-pill">File name</span>
-            {{blockInfo.data.file_name}}
-        </a>
-        <a class="list-group-item">
-            <span class="label label-default label-pill">Hash</span>
-            {{blockInfo.hash}}
-        </a>
-        <a class="list-group-item">
-            <span class="label label-default label-pill">Previous</span>
-            {{blockInfo.prev}}
-        </a>
-        <a class="list-group-item">
-            <span class="label label-default label-pill">Timestamp</span>
-            {{blockInfo.timestamp}}
-        </a> -->
+        <button class="btn btn-raised col-md-3 btn-primary download-block-btn" style="margin-top: 10px;" ng-click="downloadBlock(block)">
+            <i class="fa fa-download"></i>
+            Download
+        </button>
     </ul>
 </div>
