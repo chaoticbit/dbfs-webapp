@@ -19,6 +19,10 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
     $scope.privateKey = window.localStorage.getItem(ApiConfig.PRIVATE_KEY_NAME) || '';
     $scope.memo;
 
+    var loadTime = 5000,
+        errorCount = 0,
+        loadPromise;
+
     BlockApiService.getBlocks().then(function(data) {
         var response = data.recent;
         $scope.blocklist = response.entries;
@@ -95,6 +99,37 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
                 });
             });
         });
+    });
+
+    var getData = function() {
+        BlockApiService.getLiveNodeStatus().then(function(data) {
+            $scope.nodeslist = data.nodes;
+            errorCount = 0;
+            nextLoad();
+        }, function(error) {
+
+        }).catch(function(res) {
+
+        }).finally(function() {
+
+        });
+    };
+
+    var cancelNextLoad = function() {
+        $timeout.cancel(loadPromise);
+    };
+
+    var nextLoad = function(mill) {
+        mill = mill || loadTime;
+
+        cancelNextLoad();
+        loadPromise = $timeout(getData, mill);
+    };
+
+    getData();
+
+    $scope.$on('$destroy', function() {
+        cancelNextLoad();
     });
 
 });

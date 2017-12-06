@@ -54,4 +54,11 @@ angular.module('dbfsWebappApp').service('BlockApiService', function ($http, ApiC
             url: ApiConfig.API_URL + '/blocks/' + hash + '/file',
         });
     };
+
+    this.getLiveNodeStatus = function() {
+        return $http({
+            method: 'GET',
+            url: ApiConfig.API_URL + '/nodes'
+        });
+    };
 });
