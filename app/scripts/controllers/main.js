@@ -8,9 +8,9 @@
  * Controller of the dbfsWebappApp
  */
 angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route, $timeout, $location, ApiConfig, BlockApiService) {
-    $scope.totalBlockchains = 30;
-    $scope.totalFileUploads = 20;
-    $scope.totalNodes = 3;
+    $scope.totalBlockchains = 0;
+    $scope.totalFileUploads = 0;
+    $scope.totalNodes = 0;
     $scope.counterDuration = 1;
     $scope.isKeyPresent = false;
     $scope.blocklist = [];
@@ -29,7 +29,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
         $scope.metaData.totalPages = response.total_pages;
         $scope.metaData.totalEntries = response.total_entries;
         $scope.metaData.currentPage = response.page_number;
-        $scope.nodeslist = data.nodes;
+        setNodeData(data);
     }, function(error) {
 
     }).catch(function(res) {
@@ -103,7 +103,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
 
     var getData = function() {
         BlockApiService.getLiveNodeStatus().then(function(data) {
-            $scope.nodeslist = data.nodes;
+            setNodeData(data);
             errorCount = 0;
             nextLoad();
         }, function(error) {
@@ -126,10 +126,16 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
         loadPromise = $timeout(getData, mill);
     };
 
+    var setNodeData = function(data) {
+        $scope.nodeslist = data.nodes;
+        $scope.totalNodes = data.nodes.length;
+    };
+
     getData();
 
     $scope.$on('$destroy', function() {
         cancelNextLoad();
     });
+
 
 });
