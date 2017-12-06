@@ -80,7 +80,7 @@ angular.module('dbfsWebappApp').controller('MainCtrl', function ($scope, $route,
             }).catch(function(res) {
                 console.log(res);
             }).finally(function() {
-              $timeout($route.reload, 10);
+              $timeout(function() {$route.reload();}, 1200);
             });
         })
     };
